@@ -1,2 +1,21 @@
 # unnamedOS
-A minimal kernel-based OS following Philipp Oppermann's blog: https://os.phil-opp.com/
+
+This is a learning exercise to aquire a deeper understanding of OS essentials.
+
+To start, devs will jump through stages in the phil-opp/blog_os guideline:
+* Bare Bones Kernel
+  * [ ] basic Rust binary
+  * [ ] minimal Rust kernel
+  * [ ] printing text
+  * [ ] testing
+* Interrupts
+  * [ ] CPU Exceptions
+  * [ ] Double Faults
+  * [ ] Hardware Interrupts
+* Memory Management
+  * [ ] Paging
+  * [ ] Heap Allocation
+  * [ ] Allocator Additions
+* Multitasking
+  * [ ] Async/Await
+ 
