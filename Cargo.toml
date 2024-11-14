@@ -1,0 +1,23 @@
+[package]
+name = "unnamedOS"
+version = "0.0.1"
+
+[dependencies]
+
+# profile used for "cargo build"
+[profile.dev]
+panic = "abort"
+
+# profile used for "cargo build --release"
+[profile.release]
+panic = "abort"
+
+# linker arguments for each OS compiler
+[target.'cfg(target_os = "linux")']
+rustflags = ["-C", "link-arg=-nostartfiles"]
+
+[target.'cfg(target_os = "windows")']
+rustflags = ["-C", "link-args=/ENTRY:_start /SUBSYSTEM:console"]
+
+[target.'cfg(target_os = "macos")']
+rustflags = ["-C", "link-args=-e __start -static -nostartfiles"]
