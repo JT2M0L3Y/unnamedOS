@@ -3,14 +3,8 @@
 
 use core::panic::PanicInfo;
 
-static HELLO: &[u8] = b"Hello World!";
-static TEXT_COLOR: u8 = 0xb;
-
-// fxn called on Panic
-#[panic_handler]
-fn panic(_info: &PanicInfo) -> ! {
-    loop {}
-}
+// Rust module import
+mod vga_buffer;
 
 /**
  * unsafe:
@@ -28,17 +22,17 @@ fn panic(_info: &PanicInfo) -> ! {
 pub extern "C" fn _start() -> ! {
     // entry point to program, default for most systems
     // linker looks for a fxn name `_start` by default
+    println!("Hello World{}", "!");
 
-    let vga_buffer = 0xb8000 as *mut u8; // raw pointer
+    loop {}
 
-    // iterate over HELLO, assign string and color bytes to th buffer
-    for (i, &byte) in HELLO.iter().enumerate() {
-        // unsafe used b/c of modifying bytes directly
-        unsafe {
-            *vga_buffer.offset(i as isize * 2) = byte;
-            *vga_buffer.offset(i as isize * 2 + 1) = TEXT_COLOR;
-        }
-    }
+    // some panic message (for example)
+    // panic!("Some panic message");
+}
 
+// fxn called on Panic
+#[panic_handler]
+fn panic(info: &PanicInfo) -> ! {
+    println!("{}", info);
     loop {}
 }
