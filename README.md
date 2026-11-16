@@ -6,7 +6,7 @@ To start, devs will jump through stages in the phil-opp/blog_os guideline:
 * Bare Bones Kernel
   * [x] basic Rust binary
   * [x] minimal Rust kernel
-  * [ ] printing text
+  * [x] printing text
   * [ ] testing
 * Interrupts
   * [ ] CPU Exceptions
