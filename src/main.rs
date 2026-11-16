@@ -3,9 +3,20 @@
 
 use core::panic::PanicInfo;
 
-// Rust module import
 mod vga_buffer;
 
+#[panic_handler]
+fn panic(info: &PanicInfo) -> ! {
+    println!("{}", info);
+    loop {}
+}
+
+/**
+ * entry point to program, default for most systems
+ * 'extern "C"' tells compiler to use C-style fxn calling
+ * '!' return type is: don't return
+ * linker looks for a fxn name `_start` by default
+ */
 /**
  * unsafe:
  * - still allows safety checks
@@ -17,22 +28,9 @@ mod vga_buffer;
  *  - implement unsafe trait
  *  - access fields of `union`
  */
-
-#[no_mangle] // don't mangle name of fxn
+#[unsafe(no_mangle)] // don't mangle name of '_start' fxn
 pub extern "C" fn _start() -> ! {
-    // entry point to program, default for most systems
-    // linker looks for a fxn name `_start` by default
     println!("Hello World{}", "!");
 
-    loop {}
-
-    // some panic message (for example)
-    // panic!("Some panic message");
-}
-
-// fxn called on Panic
-#[panic_handler]
-fn panic(info: &PanicInfo) -> ! {
-    println!("{}", info);
     loop {}
 }
